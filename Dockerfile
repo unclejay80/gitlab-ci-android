@@ -31,6 +31,18 @@ RUN apt-get -qq update && \
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure
+    
+
+# GitLab injects the username as ENV-variable which will crash a gradle-build.
+# Workaround by adding unicode-support.
+# See
+# https://github.com/gradle/gradle/issues/3117#issuecomment-336192694
+# https://github.com/tianon/docker-brew-debian/issues/45
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.UTF-8
+
+
 
 RUN curl -s https://dl.google.com/android/repository/sdk-tools-linux-${VERSION_SDK_TOOLS}.zip > /sdk.zip && \
     unzip /sdk.zip -d /sdk && \
