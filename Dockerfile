@@ -71,16 +71,16 @@ RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 # --- Android NDK
 
 # download
-RUN mkdir /opt/android-ndk-tmp
-RUN cd /opt/android-ndk-tmp
-RUN wget -q https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
+#RUN mkdir /opt/android-ndk-tmp
+#RUN cd /opt/android-ndk-tmp
+#RUN wget -q https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
 # uncompress
-RUN unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
+#RUN unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip
 # move to its final location
-RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
+#RUN mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME}
 # remove temp dir
-RUN cd ${ANDROID_NDK_HOME}
-RUN rm -rf /opt/android-ndk-tmp
+#RUN cd ${ANDROID_NDK_HOME}
+#RUN rm -rf /opt/android-ndk-tmp
 
 # add to PATH
-ENV PATH ${PATH}:${ANDROID_NDK_HOME}
+#ENV PATH ${PATH}:${ANDROID_NDK_HOME}
