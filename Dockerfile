@@ -46,7 +46,7 @@ ENV LANG en_US.UTF-8
 
 
 
-RUN curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_SDK_TOOLS}_latest.zip > /tools.zip \
+RUN curl -s https://dl.google.com/android/repository/commandlinetools-linux-${VERSION_TOOLS}_latest.zip > /tools.zip \
  && mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools \
  && unzip /tools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools \
  && rm -v /tools.zip
@@ -63,8 +63,6 @@ RUN mkdir -p /root/.android \
 
 RUN while read -r package; do PACKAGES="${PACKAGES}${package} "; done < /sdk/packages.txt \
  && ${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin/sdkmanager --sdk_root=${ANDROID_SDK_ROOT} ${PACKAGES}
-
-RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
 # ------------------------------------------------------
 # --- Android NDK
